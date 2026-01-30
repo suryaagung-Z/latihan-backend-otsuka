@@ -1,0 +1,91 @@
+###
+# /auth/login
+POST http://localhost:4358/api/auth/login
+Content-Type: application/json
+
+{
+      "username": "andi@example.com",
+      "password": "hashedpassword123"
+}
+
+# /api/todos
+###
+GET http://localhost:4358/api/todos
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IkFuZGkgUHJhdGFtYSIsImVtYWlsIjoiYW5kaUBleGFtcGxlLmNvbSIsImNyZWF0ZWRfYXQiOiIyMDI1LTEyLTE4VDA4OjQ4OjU5LjAwMFoiLCJ1cGRhdGVkX2F0IjoiMjAyNS0xMi0xOFQwODo0ODo1OS4wMDBaIiwiaWF0IjoxNzY5Njc0MjgzLCJleHAiOjE3Njk3NjA2ODN9.yeHZN1mugTO3ppbTorC1WLLB9l2hGU-jsfVcswWoVAM
+
+###
+POST http://localhost:4358/api/todos
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IkFuZGkgUHJhdGFtYSIsImVtYWlsIjoiYW5kaUBleGFtcGxlLmNvbSIsImNyZWF0ZWRfYXQiOiIyMDI1LTEyLTE4VDA4OjQ4OjU5LjAwMFoiLCJ1cGRhdGVkX2F0IjoiMjAyNS0xMi0xOFQwODo0ODo1OS4wMDBaIiwiaWF0IjoxNzY5Njc0MjgzLCJleHAiOjE3Njk3NjA2ODN9.yeHZN1mugTO3ppbTorC1WLLB9l2hGU-jsfVcswWoVAM
+
+{
+      "title": "coki activiy",
+      "due_date": "2025-01-29",
+      "description": "ini deskripsi",
+      "priority": "high",
+      "status": "done",
+      "category_id": 2,
+      "user_id": 1
+}
+
+# /api/todos/:id
+###
+GET http://localhost:4358/api/todos/13
+
+###
+PUT http://localhost:4358/api/todos/13
+Content-Type: application/json
+
+{
+      "title": "Kegiatan Wildan",
+      "due_date": "2025-01-25",
+      "description": "this is description",
+      "priority": "low",
+      "status": "in_progress",
+      "category_id": 2,
+      "user_id": 1
+}
+
+###
+DELETE http://localhost:4358/api/todos/13
+
+# /api/categories
+###
+GET http://localhost:4358/api/categories
+
+###
+POST http://localhost:4358/api/categories
+Content-Type: application/json
+
+{
+      "name": "Any",
+      "user_id": 1
+}
+
+# /api/categories/:id
+###
+GET http://localhost:4358/api/categories/7
+
+###
+PUT http://localhost:4358/api/categories/7
+Content-Type: application/json
+
+{
+      "name": "school",
+      "user_id": 1
+}
+
+###
+DELETE http://localhost:4358/api/categories/7
+
+# /api/status
+###
+GET http://localhost:4358/api/status
+
+# /api/priority
+###
+GET http://localhost:4358/api/priority
+
+###
+GET http://localhost:4358/api/dashboard/todo?user_name=Budi Santoso
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IkFuZGkgUHJhdGFtYSIsImVtYWlsIjoiYW5kaUBleGFtcGxlLmNvbSIsImNyZWF0ZWRfYXQiOiIyMDI1LTEyLTE4VDA4OjQ4OjU5LjAwMFoiLCJ1cGRhdGVkX2F0IjoiMjAyNS0xMi0xOFQwODo0ODo1OS4wMDBaIiwiaWF0IjoxNzY5Njc0MjgzLCJleHAiOjE3Njk3NjA2ODN9.yeHZN1mugTO3ppbTorC1WLLB9l2hGU-jsfVcswWoVAM
