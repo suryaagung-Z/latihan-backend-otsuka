@@ -1,0 +1,186 @@
+{
+	"info": {
+		"_postman_id": "74aefe44-c4ca-4fb0-ad9d-c24a805a71d9",
+		"name": "OTSUKA -  starter mfe backend",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19888624"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Valid respon\", () => {\r",
+									"  const res = pm.response.json();\r",
+									"\r",
+									"  pm.expect(res).to.have.property(\"status\", true);\r",
+									"  pm.expect(res).to.have.property(\"data\").that.is.an(\"object\");\r",
+									"  pm.expect(res.data).to.have.property(\"token\").that.is.a(\"string\");\r",
+									"  pm.expect(res.data.token.length).to.be.greaterThan(10);\r",
+									"\r",
+									"  pm.environment.set(\"token\", res.data.token);\r",
+									"\r",
+									"  if (\r",
+									"    res.data.id &&\r",
+									"    res.data.email\r",
+									"    ) {\r",
+									"    const id = res.data.id;\r",
+									"    const email = res.data.email;\r",
+									"    \r",
+									"    pm.environment.set(\"user\", JSON.stringify({id, email}));\r",
+									"  }\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n      \"username\": \"andi@example.com\",\r\n      \"password\": \"hashedpassword123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/api/auth/login",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Todos",
+			"item": [
+				{
+					"name": "Get all todos",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/api/todos",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"todos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Store todos",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Coki Activiy",
+									"type": "text"
+								},
+								{
+									"key": "due_date",
+									"value": "2025-01-30",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "ini deskripsi..",
+									"type": "text"
+								},
+								{
+									"key": "priority",
+									"value": "high",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "done",
+									"type": "text"
+								},
+								{
+									"key": "category_id",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "user_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/internship_itskb4/Downloads/sawitdb.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:4358/api/todos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4358",
+							"path": [
+								"api",
+								"todos"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
