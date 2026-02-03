@@ -76,6 +76,7 @@ export const put = async (req: Request, res: Response) => {
       data: update,
     });
   } catch (error) {
+    console.log(error);
     return res.status(500).json({
       status: false,
       error,
